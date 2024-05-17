@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizador de Vehículos</title>
+    <style>
+        /* Estilos CSS opcionales */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .menu a:hover {
+            background-color: #f2f2f2;
+        }
+
+        .cotizacion {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cotizacion label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .cotizacion input[type="text"],
+        .cotizacion input[type="email"],
+        .cotizacion input[type="number"],
+        .cotizacion textarea,
+        .cotizacion select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .cotizacion input[type="submit"] {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cotizacion input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        .resultado {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .resultado h2 {
+            margin-bottom: 10px;
+        }
+
+        .resultado p {
+            margin-bottom: 10px;
+        }
+    </style>
+    
+</head>
+<body>
+
+<h1>Cotizador de Vehículos</h1>
+
+
+<div class="menu">
+    <a href="#cotizar">Cotizar</a>
+   
+</div>
+<section class="cotizacion" id="cotizar">
+    <h2>Cotización de Vehículos</h2>
+    <form id="formulario-cotizacion" action="#" method="post">
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" name="marca" required>
+
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo" name="modelo" required>
+
+        <label for="año">Año:</label>
+        <input type="text" id="año" name="año" required>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" required>
+
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" required>
+
+        <label for="metodo-pago">Método de Pago:</label>
+        <select id="metodo-pago" name="metodo-pago">
+            <option value="efectivo">Efectivo</option>
+            <option value="tarjeta-credito">Tarjeta de Crédito</option>
+            <option value="transferencia">Transferencia Bancaria</option>
+        </select>
+
+        <label for="especificaciones">Otras Especificaciones:</label>
+        <textarea id="especificaciones" name="especificaciones" rows="4"></textarea>
+
+        <input type="submit" value="Enviar Cotización">
+    </form>
+</section>
+
+<!-- Sección de Resultados -->
+<div class="resultado" id="resultado">
+    <h2>¡Gracias por enviar tu cotización!</h2>
+    <p>Los detalles de tu cotización son los siguientes:</p>
+    <p><strong>Marca:</strong> <span id="resultado-marca"></span></p>
+    <p><strong>Modelo:</strong> <span id="resultado-modelo"></span></p>
+    <p><strong>Año:</strong> <span id="resultado-año"></span></p>
+    <p><strong>Nombre:</strong> <span id="resultado-nombre"></span></p>
+    <p><strong>Email:</strong> <span id="resultado-email"></span></p>
+    <p><strong>Teléfono:</strong> <span id="resultado-telefono"></span></p>
+    <p><strong>Precio:</strong> <span id="resultado-precio"></span></p>
+    <p><strong>Método de Pago:</strong> <span id="resultado-metodo-pago"></span></p>
+    <p><strong>Otras Especificaciones:</strong> <span id="resultado-especificaciones"></span></p>
+</div>
+
+<!-- Script JavaScript -->
+<script>
+    // Función para manejar el envío del formulario de cotización
+    document.getElementById("formulario-cotizacion").addEventListener("submit", function(event) {
+        event.preventDefault(); // Evitar el envío del formulario
+
+        // Obtener los valores del formulario
+        var marca = document.getElementById("marca").value;
+        var modelo = document.getElementById("modelo").value;
+        var año = document.getElementById("año").value;
+        var nombre = document.getElementById("nombre").value;
+        var email = document.getElementById("email").value;
+        var telefono = document.getElementById("telefono").value;
+        var precio = document.getElementById("precio").value;
+        var metodoPago = document.getElementById("metodo-pago").value;
+        var especificaciones = document.getElementById("especificaciones").value;
+
+        // Mostrar los resultados en la sección de resultados
+        document.getElementById("resultado-marca").textContent = marca;
+        document.getElementById("resultado-modelo").textContent = modelo;
+        document.getElementById("resultado-año").textContent = año;
+        document.getElementById("resultado-nombre").textContent = nombre;
+        document.getElementById("resultado-email").textContent = email;
+        document.getElementById("resultado-telefono").textContent = telefono;
+        document.getElementById("resultado-precio").textContent = precio;
+        document.getElementById("resultado-metodo-pago").textContent = metodoPago;
+        document.getElementById("resultado-especificaciones").textContent = especificaciones;
+
+        // Mostrar la sección de resultados
+        document.getElementById("resultado").style.display = "block";
+    });
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
